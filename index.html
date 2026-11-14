@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bharat Marko Facts Studio</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f8fafc;font-family:Arial,sans-serif;padding:18px}
+header{background:linear-gradient(135deg,#1d4ed8,#6d28d9);padding:22px;border-radius:20px;text-align:center}
+.logo{font-size:34px}h1{font-size:23px;margin:8px 0}header p{margin:0;color:#dbeafe}
+.card{background:#151e33;border:1px solid #293653;border-radius:16px;padding:16px;margin-top:16px}
+label{display:block;margin:10px 0 7px;color:#cbd5e1;font-weight:bold}
+input,select,textarea{width:100%;padding:13px;border-radius:10px;border:1px solid #475569;background:#0b1222;color:white;font-size:16px}
+button{border:0;border-radius:10px;padding:13px 16px;background:#3b82f6;color:white;font-size:15px;font-weight:bold;margin-top:12px;width:100%}
+.output{white-space:pre-wrap;line-height:1.55;background:#0b1222;padding:13px;border-radius:10px;min-height:70px;color:#e2e8f0}
+.small{font-size:12px;color:#94a3b8;text-align:center;margin:18px 0}
+</style>
+</head>
+<body>
+<header><div class="logo">🧠</div><h1>BHARAT MARKO</h1><strong>FACTS STUDIO</strong><p>Create • Copy • Publish</p></header>
+<section class="card">
+<label for="topic">अपना वीडियो टॉपिक लिखें</label>
+<input id="topic" placeholder="जैसे: इंसान के शरीर के 5 रोचक तथ्य">
+<label for="lang">भाषा</label>
+<select id="lang"><option value="hi">हिंदी</option><option value="en">English</option></select>
+<button onclick="generate()">कंटेंट बनाएं</button>
+</section>
+<section class="card"><label>वीडियो स्क्रिप्ट</label><div class="output" id="script">आपकी स्क्रिप्ट यहां दिखाई देगी।</div><button onclick="copyText('script')">स्क्रिप्ट कॉपी करें</button></section>
+<section class="card"><label>Title</label><div class="output" id="title">यहां टाइटल आएगा।</div><button onclick="copyText('title')">Title कॉपी करें</button></section>
+<section class="card"><label>Description + Hashtags</label><div class="output" id="desc">यहां Description आएगा।</div><button onclick="copyText('desc')">Description कॉपी करें</button></section>
+<section class="card"><label>Tags / Keywords</label><div class="output" id="tags">यहां Tags आएंगे।</div><button onclick="copyText('tags')">Tags कॉपी करें</button></section>
+<p class="small">Bharat Marko Facts Studio • Version 1.0 • शुरुआती टेम्पलेट संस्करण</p>
+<script>
+function generate(){
+ const topic=document.getElementById('topic').value.trim();
+ const lang=document.getElementById('lang').value;
+ if(!topic){alert('पहले वीडियो का टॉपिक लिखें।');return;}
+ if(lang==='hi'){
+  document.getElementById('script').textContent=`😱 क्या आप जानते हैं? आज हम जानेंगे ${topic} के 5 रोचक तथ्य!\n\nनंबर 1 — इस विषय से जुड़ा एक हैरान करने वाला तथ्य।\n\nनंबर 2 — इससे जुड़ी एक दिलचस्प जानकारी।\n\nनंबर 3 — एक ऐसा तथ्य जो आपको सोचने पर मजबूर कर देगा।\n\nनंबर 4 — इस विषय की एक खास बात।\n\nनंबर 5 — आखिरी और सबसे रोचक जानकारी!\n\nवीडियो पसंद आए तो लाइक करें और Bharat Marko को सब्सक्राइब करें।\n\nनोट: अपलोड से पहले सभी तथ्यों की विश्वसनीय स्रोतों से जांच करें।`;
+  document.getElementById('title').textContent=`😱 ${topic} | 5 रोचक और हैरान कर देने वाले Facts! #shorts`;
+  document.getElementById('desc').textContent=`आज के वीडियो में जानिए ${topic} से जुड़ी रोचक जानकारी। वीडियो को अंत तक देखें और अपना पसंदीदा फैक्ट कमेंट में बताएं!\n\n#Facts #HindiFacts #AmazingFacts #Shorts #BharatMarko`;
+  document.getElementById('tags').textContent=`${topic}, facts in hindi, amazing facts, hindi facts, रोचक तथ्य, interesting facts, top facts, viral facts, youtube shorts, bharat marko`;
+ }else{
+  document.getElementById('script').textContent=`Did you know? Today we explore 5 interesting facts about ${topic}.\n\nFact 1 — Add a verified surprising fact.\nFact 2 — Add an interesting detail.\nFact 3 — Add another verified fact.\nFact 4 — Share a useful discovery.\nFact 5 — End with the most surprising fact.\n\nLike, comment and subscribe to Bharat Marko. Verify every fact before publishing.`;
+  document.getElementById('title').textContent=`5 Amazing Facts About ${topic}! 😱 #shorts`;
+  document.getElementById('desc').textContent=`Discover interesting facts about ${topic}. Watch till the end and comment your favourite fact.\n\n#Facts #AmazingFacts #Shorts #BharatMarko`;
+  document.getElementById('tags').textContent=`${topic}, amazing facts, interesting facts, facts, shorts, viral facts, Bharat Marko`;
+ }
+}
+function copyText(id){
+ const value=document.getElementById(id).textContent;
+ if(navigator.clipboard && navigator.clipboard.writeText){navigator.clipboard.writeText(value).then(()=>alert('कॉपी हो गया!')).catch(()=>fallback(value));}
+ else fallback(value);
+}
+function fallback(value){const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('कॉपी हो गया!');}
+</script>
+</body></html>
